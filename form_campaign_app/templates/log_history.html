@@ -1,0 +1,121 @@
+{% extends 'base/master.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_history.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-auto">
+
+    <div class="w-full bg-gray-50 p-6 dark:bg-gray-800 flex flex-col">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mb-6">
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Warning Count Today</p>
+                        <p id="warning-count-today" class="text-2xl font-semibold text-gray-900 dark:text-white">0</p>
+                    </div>
+                    <div class="rounded-full bg-yellow-100 p-3 dark:bg-yellow-900">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Error Count Today</p>
+                        <p id="error-count-today" class="text-2xl font-semibold text-gray-900 dark:text-white">0</p>
+                    </div>
+                    <div class="rounded-full bg-red-100 p-3 dark:bg-red-900">
+                        <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Warning Count Total</p>
+                        <p id="warning-count-total" class="text-2xl font-semibold text-gray-900 dark:text-white">0</p>
+                    </div>
+                    <div class="rounded-full bg-yellow-100 p-3 dark:bg-yellow-900">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Error Count Total</p>
+                        <p id="error-count-total" class="text-2xl font-semibold text-gray-900 dark:text-white">0</p>
+                        <!-- <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">2 minutes ago</p> -->
+                    </div>
+                    <div class="rounded-full bg-red-100 p-3 dark:bg-red-900">
+                        <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Currently Opened Forms Card -->
+        </div>
+        <div class="flex-1 overflow-y-auto">
+            <div class="mx-auto max-w-6xl">
+                <!-- Header -->
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Log History</h1>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Track system activities and changes by IP
+                        address</p>
+                </div>
+
+                <!-- Log Table with background -->
+                <div class="bg-white dark:bg-gray-900 shadow rounded-lg p-6">
+                    <div class="relative overflow-x-auto">
+                        <table id="logHistoryTable" class="display w-full text-left text-sm">
+                            <thead
+                                class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        ID</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Timestamp</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        IP Address</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Status</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Error Message</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Category</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Activity</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Details</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        Browser</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+                                <tr>
+                                    <td class="text-center text-gray-500 dark:text-gray-400" colspan="9">No data found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/log_history.js') }}"></script>
+{% endblock %}

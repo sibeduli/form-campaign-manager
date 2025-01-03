@@ -1,0 +1,36 @@
+html.light .dataTable td {
+    border-left: 1px solid #eee;
+}
+
+html.dark .dataTable td {
+    border-left: 1px solid #65686d;
+}
+
+html.light .dataTable th {
+    border-left: 1px solid #eee;
+}
+
+html.dark .dataTable th {
+    border-left: 1px solid #65686d;
+}
+
+html.dark .dataTable div.dt-container .dt-input {
+    color: #eee;
+}
+
+html.dark .dt-container .dt-search input,html.dark .dt-container .dt-length select {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgb(55,65,81);
+}
+
+html.dark .dt-container .dt-length,
+html.dark div.dt-container .dt-search,
+html.dark div.dt-container .dt-info,
+html.dark div.dt-container .dt-processing,
+html.dark div.dt-container .dt-paging {
+    color: #eee;
+}
+
+html.dark .dt-container .dt-paging .dt-paging-button.disabled,html.dark .dt-container .dt-paging .dt-paging-button.disabled:hover,html.dark .dt-container .dt-paging .dt-paging-button.disabled:active {
+    color: #eee !important
+}

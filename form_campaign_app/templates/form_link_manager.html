@@ -1,0 +1,192 @@
+{% extends 'base/master.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_link_manager.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-auto">
+    <div class="w-full bg-gray-50 p-6 dark:bg-gray-800">
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mb-6">
+            <!-- Unopened Forms Card -->
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Unopened Forms</p>
+                        <p id="unopened-form-count" class="text-2xl font-semibold text-gray-900 dark:text-white">0</p>
+                    </div>
+                    <div class="rounded-full bg-yellow-100 p-3 dark:bg-yellow-900">
+                        <i class="fas fa-envelope text-yellow-600 dark:text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submitted Forms Card -->
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Last Form ID Created</p>
+                        <p id="last-form-id-created" class="text-2xl font-semibold text-gray-900 dark:text-white">-</p>
+                    </div>
+                    <div class="rounded-full bg-green-100 p-3 dark:bg-green-900">
+                        <i class="fas fa-check-circle text-green-600 dark:text-green-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Last Form Submitted Card -->
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Last Form ID Submitted</p>
+                        <p id="last-form-id-submitted" class="text-2xl font-semibold text-gray-900 dark:text-white">-</p>
+                        <!-- <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">2 minutes ago</p> -->
+                    </div>
+                    <div class="rounded-full bg-blue-100 p-3 dark:bg-blue-900">
+                        <i class="fas fa-clock text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Currently Opened Forms Card -->
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Last Form ID Viewed</p>
+                        <p id="last-form-id-viewed" class="text-2xl font-semibold text-gray-900 dark:text-white">-</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Only calculate first time viewed</p>
+                    </div>
+                    <div class="rounded-full bg-purple-100 p-3 dark:bg-purple-900">
+                        <i class="fas fa-eye text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Links Table -->
+        <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="p-6">
+                <div class="mb-4 flex items-center justify-between">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Form Links</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Manage your form links here</p>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <!-- Left side buttons -->
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                        <button type="button" id="btn-add-new-form-link"
+                            class="inline-flex items-center rounded-s-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
+                            <i class="fas fa-plus"></i>
+                            <span class="ml-2">Create New Form Link</span>
+                        </button>
+                        <button type="button" id="btn-refresh-table"
+                            class="inline-flex items-center border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
+                            <i class="fas fa-sync-alt"></i>
+                            <span class="ml-2">Refresh Table</span>
+                        </button>
+                        <button type="button" id="btn-copy-last-form-link"
+                            class="inline-flex items-center rounded-e-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
+                            <i class="fas fa-link"></i>
+                            <span class="ml-2">Copy Last Form Link</span>
+                        </button>
+                    </div>
+
+                    <!-- Right side controls -->
+                    <div class="inline-flex items-center gap-2">
+                        <!-- Clear filters button -->
+                        <button type="button" id="btn-clear-filters"
+                            class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:text-red-700 focus:ring-2 focus:ring-red-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-red-500">
+                            <i class="fas fa-eraser mr-2"></i>
+                            <span>Clear Filters</span>
+                        </button>
+
+                        <!-- Existing toggle filter -->
+                        <div
+                            class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 dark:border-gray-700 dark:bg-gray-800">
+                            <i class="fas fa-filter text-gray-600 dark:text-white mr-2"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white mr-3">Toggle Filters</span>
+                            <button type="button" id="btn-toggle-filters"
+                                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 dark:bg-gray-700"
+                                role="switch" aria-checked="false">
+                                <span class="sr-only">Toggle Filters</span>
+                                <span
+                                    class="pointer-events-none relative inline-block size-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out">
+                                    <!-- Not Enabled State -->
+                                    <span
+                                        class="absolute inset-0 flex size-full items-center justify-center opacity-100 transition-opacity duration-200 ease-in"
+                                        aria-hidden="true">
+                                        <svg class="size-3 text-gray-400" fill="none" viewBox="0 0 12 12">
+                                            <path d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    <!-- Enabled State -->
+                                    <span
+                                        class="absolute inset-0 flex size-full items-center justify-center opacity-0 transition-opacity duration-100 ease-out"
+                                        aria-hidden="true">
+                                        <svg class="size-3 text-sky-500" fill="currentColor" viewBox="0 0 12 12">
+                                            <path
+                                                d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-x-auto">
+                    <table id="formLinksTable" class="display w-full text-left text-sm">
+                        <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Form ID</th>
+                                <th scope="col" class="px-6 py-3">Status</th>
+                                <th scope="col" class="px-6 py-3">Created Time</th>
+                                <th scope="col" class="px-6 py-3">Viewed Time</th>
+                                <th scope="col" class="px-6 py-3">Submitted Time</th>
+                                <th scope="col" class="px-6 py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample data for UI testing -->
+                            <tr
+                                class="border-b bg-white text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                                <td class="px-6 py-4">1</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
+                                        Unopened
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">2023-12-01 10:00 AM</td>
+                                <td class="px-6 py-4">2023-12-01 10:05 AM</td>
+                                <td class="px-6 py-4">2023-12-01 10:10 AM</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex space-x-2">
+                                        <button
+                                            class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button
+                                            class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <button
+                                            class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                                            <i class="fas fa-link"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/form_link_manager.js') }}"></script>
+{% endblock %}

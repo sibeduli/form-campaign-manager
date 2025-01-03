@@ -1,0 +1,13 @@
+{% extends 'base/master.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/guest_form.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mx-auto">
+    <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg my-8">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white text-center">404 - Page Not Found</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-center">The page you are looking for does not exist or has been removed / deleted.</p>
+    </div>
+</div>
+{% endblock %}

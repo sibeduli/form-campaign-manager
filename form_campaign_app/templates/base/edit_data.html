@@ -1,0 +1,223 @@
+<div id="form-modal-edit-data"
+    class="fixed inset-0 bg-gray-800 bg-opacity-80 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-1000 ease-in-out z-50">
+    <div class="relative p-4 w-full max-w-2xl max-h-full overflow-y-auto">
+        <div
+            class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 border-double border-4 border-sky-500">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Edit Campaign Data
+                </h3>
+                <button id="close-form-modal-edit-data" type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="#" id="edit-campaign-form">
+                <input type="hidden" id="edit-table-id" name="table_id">
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <label for="edit-responden-name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Responden</label>
+                        <select name="responden_name" id="edit-responden-name" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value="">Select a responden...</option>
+                            <option value="Avian Reventiari">Avian Reventiari</option>
+                            <option value="Larasati Trimiranti">Larasati Trimiranti</option>
+                            <option value="Raqsi Fauzan">Raqsi Fauzan</option>
+                            <option value="Septiant Makfi Abida">Septiant Makfi Abida</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="edit-campaign-name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaign Name</label>
+                        <input type="text" name="campaign_name" id="edit-campaign-name" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter campaign name">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaign
+                            Date</label>
+                        <div class="">
+                            <div id="edit-date-range-picker" date-rangepicker datepicker-format="dd/mm/yyyy"
+                                class="flex justify-around">
+                                <div class="block w-full">
+                                    <input id="edit-datepicker-range-start" name="start_date" type="text" required
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Start date">
+                                </div>
+                                <span class="mx-4 text-gray-500">to</span>
+                                <div class="block w-full">
+                                    <input id="edit-datepicker-range-end" name="end_date" type="text" required
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="End date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="edit-unit"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit</label>
+                        <input type="text" name="unit" id="edit-unit" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter unit">
+                    </div>
+                    <div>
+                        <label for="edit-brand"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                        <input type="text" name="brand" id="edit-brand" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter brand">
+                    </div>
+                    <div>
+                        <label for="edit-program"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Program</label>
+                        <input type="text" name="program" id="edit-program" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter program">
+                    </div>
+                    <div>
+                        <label for="edit-jenis-paket"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Paket</label>
+                        <select name="jenis_paket" id="edit-jenis-paket" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value="">Select package type...</option>
+                            <option value="Sponsorship">Sponsorship</option>
+                            <option value="Reguler">Reguler</option>
+                            <option value="Stand Alone / Digital Only">Stand Alone / Digital Only</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="edit-nilai-paket"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Paket</label>
+                        <input type="number" name="nilai_paket" id="edit-nilai-paket" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter nilai paket">
+                    </div>
+                    <div>
+                        <label for="edit-total-real-cost"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Real Cost</label>
+                        <input type="number" name="total_real_cost" id="edit-total-real-cost" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter total real cost">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-revenue-prorate"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Revenue Prorate</label>
+                        <textarea name="revenue_prorate" id="edit-revenue-prorate" rows="4" required
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter revenue prorate details"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-breakdown-cost"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breakdown Cost</label>
+                        <textarea name="breakdown_cost" id="edit-breakdown-cost" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter breakdown cost"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-breakdown-kpi"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breakdown KPI</label>
+                        <textarea name="breakdown_kpi" id="edit-breakdown-kpi" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter breakdown KPI"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-activity-type"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Activity Type</label>
+                        <textarea name="activity_type" id="edit-activity-type" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter activity type"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-list-benefit"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List Benefit</label>
+                        <textarea name="list_benefit" id="edit-list-benefit" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter list benefit"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-detail-brief"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail Brief</label>
+                        <textarea name="detail_brief" id="edit-detail-brief" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter detail brief"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="edit-timeline-benefit"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Timeline
+                            Benefit</label>
+                        <textarea name="timeline_benefit" id="edit-timeline-benefit" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Enter timeline benefit"></textarea>
+                    </div>
+                    <div class="sm:col-span-2 border-solid border-2 border-sky-200 dark:border-sky-500 rounded-md p-2 flex justify-center dark:bg-gray-700">
+                        <fieldset>
+                            <legend class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Product Knowledge</legend>
+                            <p class="mt-1 block text-center mb-2 text-sm font-medium text-gray-400 dark:text-white/75">
+                                Please choose yes or no</p>
+                            <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                                <div class="flex items-center">
+                                    <input name="product_knowledge" id="edit-product-knowledge-yes" type="radio"
+                                        value="yes" required
+                                        class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                    <label for="edit-product-knowledge-yes"
+                                        class="ml-3 block text-sm font-medium text-gray-900 dark:text-white">Yes</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input name="product_knowledge" id="edit-product-knowledge-no" type="radio"
+                                        value="no" required
+                                        class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                    <label for="edit-product-knowledge-no"
+                                        class="ml-3 block text-sm font-medium text-gray-900 dark:text-white">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="sm:col-span-2 border-solid border-2 border-sky-200 dark:border-sky-500 rounded-md p-2 flex justify-center dark:bg-gray-700">
+                        <fieldset>
+                            <legend class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white">Key
+                                Visual Design</legend>
+                            <p class="mt-1 block text-center mb-2 text-sm font-medium text-gray-400 dark:text-white/75">
+                                Please choose yes or no</p>
+                            <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                                <div class="flex items-center">
+                                    <input name="key_visual_design" id="edit-key-visual-yes" type="radio" value="yes"
+                                        required
+                                        class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                    <label for="edit-key-visual-yes"
+                                        class="ml-3 block text-sm font-medium text-gray-900 dark:text-white">Yes</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input name="key_visual_design" id="edit-key-visual-no" type="radio" value="no"
+                                        required
+                                        class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                    <label for="edit-key-visual-no"
+                                        class="ml-3 block text-sm font-medium text-gray-900 dark:text-white">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-end gap-x-6">
+                    <button type="button" id="cancel-form-edit-data"
+                        class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="text-white bg-sky-600 hover:bg-sky-700 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-sky-600 dark:hover:bg-sky-700">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

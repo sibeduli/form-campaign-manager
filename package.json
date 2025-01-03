@@ -1,0 +1,14 @@
+{
+  "name": "form_campaign_app",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./form_campaign_app/static/tailwind/input.css -o ./form_campaign_app/static/tailwind/output.css --watch"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "flowbite": "^2.5.2"
+  }
+}

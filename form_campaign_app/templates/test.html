@@ -1,0 +1,123 @@
+{% extends 'base/master.html' %} {% block head %} {% endblock %} {% block
+content %}
+<div
+  class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50"
+>
+  <div class="w-full max-w-2xl rounded-lg bg-gray-900 p-6 text-white shadow-lg">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-semibold">Add Product</h3>
+      <button
+        type="button"
+        class="text-gray-400 hover:text-white"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+    </div>
+    <form>
+      <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+        <!-- Name -->
+        <div class="col-span-1">
+          <label
+            for="product-name"
+            class="block text-sm font-medium text-gray-300"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="product-name"
+            class="mt-1 block w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Type product name"
+          />
+        </div>
+        <!-- Brand -->
+        <div class="col-span-1">
+          <label
+            for="product-brand"
+            class="block text-sm font-medium text-gray-300"
+            >Brand</label
+          >
+          <input
+            type="text"
+            id="product-brand"
+            class="mt-1 block w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Product brand"
+          />
+        </div>
+        <!-- Price -->
+        <div class="col-span-1">
+          <label
+            for="product-price"
+            class="block text-sm font-medium text-gray-300"
+            >Price</label
+          >
+          <input
+            type="text"
+            id="product-price"
+            class="mt-1 block w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="$2999"
+          />
+        </div>
+        <!-- Category -->
+        <div class="col-span-1">
+          <label
+            for="product-category"
+            class="block text-sm font-medium text-gray-300"
+            >Category</label
+          >
+          <select
+            id="product-category"
+            class="mt-1 block w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+          >
+            <option>Select category</option>
+          </select>
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="mt-4">
+        <label
+          for="product-description"
+          class="block text-sm font-medium text-gray-300"
+          >Description</label
+        >
+        <textarea
+          id="product-description"
+          rows="4"
+          class="mt-1 block w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-gray-300 focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Write product description here"
+        ></textarea>
+      </div>
+      <!-- Button -->
+      <div class="mt-6 flex justify-center">
+        <button
+          type="submit"
+          class="w-full max-w-sm rounded-lg bg-blue-600 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500"
+        >
+          + Add new product
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("example-modal");
+  const openButton = document.getElementById("open-modal");
+  const closeButton = document.getElementById("close-modal");
+
+  openButton.addEventListener("click", () => {
+    modal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+  });
+
+  closeButton.addEventListener("click", () => {
+    modal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+  });
+
+  // Close modal when clicking on the backdrop
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+    }
+  });
+</script>
+{% endblock %}

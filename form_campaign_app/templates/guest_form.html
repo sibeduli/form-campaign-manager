@@ -1,0 +1,220 @@
+{% extends 'base/master.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/guest_form.css') }}">
+{% endblock %}
+
+{% block content %}
+<input type="hidden" id="uuid" value="{{ uuid }}">
+<div class="container-fluid mx-auto">
+    <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg my-8">
+        <!-- Form Header -->
+        <div class="border-b border-gray-200 dark:border-gray-700 p-6">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Campaign Form</h1>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Please fill out the form below with your campaign
+                details.</p>
+        </div>
+
+        <!-- Main Form -->
+        <div class="p-6">
+            <form id="guest-campaign-form">
+                <div class="space-y-6">
+                    <!-- Basic Information Section -->
+                    <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Basic Information</h2>
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="responden-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Responden</label>
+                                <select name="responden_name" id="responden-name" required
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500">
+                                    <option value="">Select a responden...</option>
+                                    <option value="Avian Reventiari">Avian Reventiari</option>
+                                    <option value="Larasati Trimiranti">Larasati Trimiranti</option>
+                                    <option value="Raqsi Fauzan">Raqsi Fauzan</option>
+                                    <option value="Septiant Makfi Abida">Septiant Makfi Abida</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="campaign-name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaign
+                                    Name</label>
+                                <input type="text" name="campaign_name" id="campaign-name" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter campaign name">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaign
+                                Date</label>
+                            <div id="date-range-picker" date-rangepicker datepicker-format="dd/mm/yyyy"
+                                class="grid gap-4 md:flex md:items-center">
+                                <input id="datepicker-range-start" name="start_date" type="text" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Start date">
+                                <span class="mx-4 text-gray-700 dark:text-gray-100 text-center">to</span>
+                                <input id="datepicker-range-end" name="end_date" type="text" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="End date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campaign Details Section -->
+                    <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Campaign Details</h2>
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="unit"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit</label>
+                                <input type="text" name="unit" id="unit" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter unit">
+                            </div>
+                            <div>
+                                <label for="brand"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                <input type="text" name="brand" id="brand" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter brand name">
+                            </div>
+                            <div>
+                                <label for="program"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Program</label>
+                                <input type="text" name="program" id="program" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter program name">
+                            </div>
+                            <div>
+                                <label for="jenis-paket"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Package
+                                    Type</label>
+                                <select name="jenis_paket" id="jenis-paket" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                    <option value="">Select package type...</option>
+                                    <option value="Sponsorship">Sponsorship</option>
+                                    <option value="Reguler">Regular</option>
+                                    <option value="Stand Alone / Digital Only">Stand Alone / Digital Only</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Information Section -->
+                    <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Financial Information</h2>
+                        <!-- First grid for the two number inputs -->
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="nilai-paket"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai
+                                    Paket</label>
+                                <div class="mt-2 flex">
+                                    <div
+                                        class="flex shrink-0 items-center rounded-l-md bg-white px-3 text-base text-gray-900 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm/6">
+                                        Rp.
+                                    </div>
+                                    <input type="number" name="nilai_paket" id="nilai-paket" required min="0"
+                                        class="-ml-px p-2.5 block w-full grow rounded-r-md bg-white text-sm text-gray-900 border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        placeholder="Enter package value">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="total-real-cost"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Real
+                                    Cost</label>
+                                <div class="mt-2 flex">
+                                    <div
+                                        class="flex shrink-0 items-center rounded-l-md bg-white px-3 text-base text-gray-900 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm/6">
+                                        Rp.
+                                    </div>
+                                    <input type="number" name="total_real_cost" id="total-real-cost" required min="0"
+                                        class="-ml-px p-2.5 block w-full grow rounded-r-md bg-white text-sm text-gray-900 border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        placeholder="Enter total cost">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Separate div for textareas -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="revenue-prorate"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Revenue
+                                    Prorate</label>
+                                <textarea name="revenue_prorate" id="revenue-prorate" rows="3" required
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter revenue prorate details"></textarea>
+                            </div>
+                            <div>
+                                <label for="breakdown-cost"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breakdown
+                                    Cost</label>
+                                <textarea name="breakdown_cost" id="breakdown-cost" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter cost breakdown details"></textarea>
+                            </div>
+                            <div>
+                                <label for="breakdown-kpi"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breakdown
+                                    KPI</label>
+                                <textarea name="breakdown_kpi" id="breakdown-kpi" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter KPI breakdown details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Additional Information</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="activity-type"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Activity
+                                    Type</label>
+                                <textarea name="activity_type" id="activity-type" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter activity type details"></textarea>
+                            </div>
+                            <div>
+                                <label for="list-benefit"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                    Benefit</label>
+                                <textarea name="list_benefit" id="list-benefit" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter benefit list details"></textarea>
+                            </div>
+                            <div>
+                                <label for="detail-brief"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail
+                                    Brief</label>
+                                <textarea name="detail_brief" id="detail-brief" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter detailed brief"></textarea>
+                            </div>
+                            <div>
+                                <label for="timeline-benefit"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Timeline
+                                    Benefit</label>
+                                <textarea name="timeline_benefit" id="timeline-benefit" rows="3"
+                                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Enter benefit timeline details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end space-x-4">
+                        <button type="submit"
+                            class="text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800">
+                            Submit Form
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/guest_form.js') }}"></script>
+{% endblock %}
