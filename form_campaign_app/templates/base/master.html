@@ -21,9 +21,9 @@
 <body class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
   <!-- check if route contains guest-form -->
   {% if 'guest-form' in request.path or 'guest-status' in request.path %}
-    {% include 'base/guest_navbar.html' %}
+  {% include 'base/guest_navbar.html' %}
   {% else %}
-    {% include 'base/navbar.html' %}
+  {% include 'base/navbar.html' %}
   {% endif %}
   {% include 'base/add_new_data.html' %}
   {% include 'base/view_data.html' %}
