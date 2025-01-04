@@ -1,8 +1,9 @@
 from form_campaign_app import db
 from datetime import datetime
 
+
 class Campaign(db.Model):
-    __tablename__ = 'campaign'
+    __tablename__ = "campaign"
 
     table_id = db.Column(db.Integer, primary_key=True)
     responden_id = db.Column(db.String(50), nullable=False)
@@ -29,26 +30,26 @@ class Campaign(db.Model):
 
     def to_dict(self):
         return {
-            'table_id': self.table_id,
-            'responden_id': self.responden_id,
-            'entry_time': self.entry_time.strftime('%Y-%m-%d %H:%M:%S'),
-            'responden_name': self.responden_name,
-            'campaign_name': self.campaign_name,
-            'start_date': self.start_date,
-            'end_date': self.end_date,
-            'unit': self.unit,
-            'brand': self.brand,
-            'program': self.program,
-            'jenis_paket': self.jenis_paket,
-            'nilai_paket': self.nilai_paket,
-            'revenue_prorate': self.revenue_prorate,
-            'total_real_cost': self.total_real_cost,
-            'breakdown_cost': self.breakdown_cost,
-            'breakdown_kpi': self.breakdown_kpi,
-            'activity_type': self.activity_type,
-            'list_benefit': self.list_benefit,
-            'detail_brief': self.detail_brief,
-            'timeline_benefit': self.timeline_benefit,
-            'product_knowledge': self.product_knowledge,
-            'key_visual_design': self.key_visual_design
-        } 
+            "table_id": self.table_id,
+            "responden_id": self.responden_id,
+            "entry_time": self.entry_time.strftime("%Y-%m-%d %H:%M:%S"),
+            "responden_name": self.responden_name,
+            "campaign_name": self.campaign_name,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "unit": self.unit,
+            "brand": self.brand,
+            "program": self.program,
+            "jenis_paket": self.jenis_paket,
+            "nilai_paket": self.nilai_paket,
+            "revenue_prorate": self.revenue_prorate,
+            "total_real_cost": self.total_real_cost,
+            "breakdown_cost": self.breakdown_cost,
+            "breakdown_kpi": self.breakdown_kpi,
+            "activity_type": self.activity_type,
+            "list_benefit": self.list_benefit,
+            "detail_brief": self.detail_brief,
+            "timeline_benefit": self.timeline_benefit,
+            "product_knowledge": self.product_knowledge,
+            "key_visual_design": self.key_visual_design,
+        }
