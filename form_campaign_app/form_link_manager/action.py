@@ -197,6 +197,8 @@ class FormLinkAction:
     def get_last_form_link_created(self):
         try:
             form_link = FormLink.query.order_by(FormLink.created_time.desc()).first()
+            if form_link is None:
+                return None
             return form_link.to_dict()
         except Exception as e:
             print(
