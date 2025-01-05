@@ -87,9 +87,25 @@ $(document).ready(function () {
                     url: `/api/form-link-manager/action/copy/${id}`,
                     method: 'POST',
                     success: function (response) {
-                        navigator.clipboard.writeText(response.url_link);
-                        alert('Form link copied to clipboard');
-                    }
+		            if (navigator.clipboard) {
+		                navigator.clipboard.writeText(response.url_link)
+		                    .then(() => {
+		                        alert('Form link copied to clipboard');
+		                    })
+		                    .catch((err) => {
+		                        console.error('Failed to copy text: ', err);
+		                    });
+		            } else {
+		                // Fallback for browsers that don't support the Clipboard API
+		                const textArea = document.createElement('textarea');
+		                textArea.value = response.url_link;
+		                document.body.appendChild(textArea);
+		                textArea.select();
+		                document.execCommand('copy');
+		                document.body.removeChild(textArea);
+		                alert('Form link copied to clipboard (fallback method)');
+		            }
+			}
                 });
         }
     });
