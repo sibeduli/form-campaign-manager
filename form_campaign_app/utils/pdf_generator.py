@@ -175,6 +175,7 @@ def create_campaign_pdf(data, output_path):
             # Add signature section
             elements.append(Spacer(1, 15))
             elements.append(Paragraph("Mengajukan,", value_style))
+            elements.append(Spacer(1, 80))
 
             # Create signature tables
             sig_data1 = [
@@ -205,6 +206,7 @@ def create_campaign_pdf(data, output_path):
             elements.append(sig_table1)
             elements.append(Spacer(1, 10))
             elements.append(Paragraph("Mengetahui,", value_style))
+            elements.append(Spacer(1, 80))
 
             sig_data2 = [
                 ["", "", "", ""],
